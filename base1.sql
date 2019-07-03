@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `category`
+--
+
+DROP TABLE IF EXISTS `category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `category`
+--
+
+LOCK TABLES `category` WRITE;
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'Компьютеры'),(2,'Бытовая техника'),(3,'Комплектующие');
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `products`
 --
 
@@ -28,8 +52,11 @@ CREATE TABLE `products` (
   `price` int(11) DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
   `is_top` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_B3BA5A5A12469DE2` (`category_id`),
+  CONSTRAINT `FK_B3BA5A5A12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +65,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Ноутбук',1500000,'Удобный ноут',1),(2,'Мышь',20000,'Удобная мышь',0),(3,'Телевизор',800000,'Удобный телевизор',1);
+INSERT INTO `products` VALUES (1,'Ноутбук',1500000,'Удобный ноут',1,NULL),(2,'Мышь',20000,'Удобная мышь',1,3),(3,'Телевизор',800000,'Удобный телевизор',1,NULL),(4,'Клавиатура',20000,'Удобная клавиатура',1,NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +78,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-01 21:10:33
+-- Dump completed on 2019-07-03 20:51:32
