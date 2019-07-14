@@ -3,11 +3,11 @@
 {% block title %}Виды товаров{% endblock %}
 
 {% block body %}
+<ul>
+    {% for category in categories %}
 
-    {% for category in category %}
-
-    <h4>{{ category.name }}</h4>
+    <li><h4><a href="{{ path('category_id', {'id': category.id}) }}"> {{ category.name }}</a></h4></li>
 
     {% endfor %}
-
+</ul>
 {% endblock %}

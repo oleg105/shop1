@@ -25,6 +25,17 @@ class CategoryController extends AbstractController
     }
 
 
+//    /**
+//     * @Route("/category/{id}", name="category_id")
+//     */
+//    public function show(Category $category)
+//    {
+//        return $this->render('category/show.html.twig', [
+//            'category' => $category,
+//        ]);
+//    }
+
+
     /**
      * @Route("/category", name="category")
      */
@@ -33,10 +44,9 @@ class CategoryController extends AbstractController
         $category = $categoryRepository->findAll();
 
 
-        return $this->render(
-            'category/index.html.twig',
+        return $this->render('category/index.html.twig',
             [
-                'category' => $category,
+                'categories' => $category,
             ]
         );
     }
