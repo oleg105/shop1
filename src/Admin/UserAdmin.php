@@ -18,11 +18,11 @@ class UserAdmin extends AbstractAdmin
             ->addIdentifier('email')
             ->addIdentifier('roles')
             ->addIdentifier('password')
-            ->addIdentifier('first_name')
-            ->addIdentifier('last_name')
+            ->addIdentifier('firstName')
+            ->addIdentifier('lastName')
             ->addIdentifier('address')
-            ->addIdentifier('is_email_checked')
-            ->addIdentifier('email_check_code')
+            ->addIdentifier('isEmailChecked')
+            ->addIdentifier('emailCheckCode')
         ;
     }
 
@@ -33,11 +33,11 @@ class UserAdmin extends AbstractAdmin
             ->add('email')
             ->add('roles')
             ->add('password')
-            ->add('first_name')
-            ->add('last_name')
+            ->add('firstName')
+            ->add('lastName')
             ->add('address')
-            ->add('is_email_checked')
-            ->add('email_check_code')
+            ->add('isEmailChecked')
+            ->add('emailCheckCode')
         ;
     }
 
@@ -45,12 +45,12 @@ class UserAdmin extends AbstractAdmin
     {
         $form
             ->add('email')
-            ->add('roles')
-            ->add('password')
-            ->add('first_name')
-            ->add('last_name')
+//            ->add('roles')
+//            ->add('password')
+            ->add('firstName')
+            ->add('lastName')
             ->add('address')
-            ->add('is_email_checked')
+            ->add('isEmailChecked')
         ;
     }
 }
