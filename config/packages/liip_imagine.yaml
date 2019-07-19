@@ -6,7 +6,12 @@ liip_imagine:
     filter_sets:
         products_list:
             filters:
-                thumbnail: { size: [250, 250], mode: outbound}
+                thumbnail: { size: [250, 250], mode: inset}
                 background: { size: [250, 250], position: center, color: '#ffffff' }
+
+        products_detail:
+            filters:
+                thumbnail: { size: [500, 500], mode: inset}
+                background: { size: [500, 500], position: center, color: '#ffffff' }
 
 
