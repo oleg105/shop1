@@ -46,6 +46,11 @@
                 <a class="btn btn-outline-primary" href="{{ path('security_login') }}">Вход</a>
             {% endif %}
         </form>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link">{{ render(controller('App\\Controller\\OrderController::headerCart')) }}</a>
+            </li>
+        </ul>
     </div>
 </nav>
 
