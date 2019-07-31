@@ -100,6 +100,7 @@ class Order
         if (!$this->items->contains($item)) {
             $this->items[] = $item;
             $item->setCart($this);
+            $this->updateAmount();
         }
 
         return $this;
