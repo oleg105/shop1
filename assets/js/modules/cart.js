@@ -1,6 +1,6 @@
 'use strict';
 
-let addToCartButtons;
+let addToCartButtons, cartItemCountInputs;
 
 addToCartButtons = document.querySelectorAll('.js-add-to-cart');
 
@@ -22,3 +22,34 @@ addToCartButtons.forEach((button) => {
 
     });
 });
+
+cartItemCountInputs = document.querySelectorAll('.js-cart-item-count');
+
+//cartTable = document.getElementById('cartTable');
+
+// if (cartTable) {
+//     cartTable.addEventListener('input', (event) =>
+//         if (!event.target.classList.contains('js-cart-item-count')) {
+//             return;
+//         }
+//     )
+// }
+
+cartItemCountInputs.forEach((input) => {
+    input.addEventListener('input', (event) => {
+        let formData = new FormData();
+
+        formData.set('count', input.value);
+
+        fetch(input.dataset.url, {
+            method: 'post',
+            body: formData
+        })
+            .then((responce) => {
+                return responce.text();
+            })
+            .then((body) => {
+                document.getElementById('cartTable').innerHTML = body;
+            });
+    })
+})
