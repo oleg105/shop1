@@ -33,8 +33,11 @@
 
     {{ form_start(form) }}
     {{ form_row(form.firstName, {'label': 'Имя'}) }}
+    {{ form_row(form.lastName, {'label': 'Фамилия'}) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.address, {'label': 'Адрес'}) }}
 
-    <button type="submit">Оформить заказ</button>
+    <button type="submit" class="btn btn-block btn-primary">Оформить заказ</button>
     {{ form_end(form) }}
 
 {% endblock %}
