@@ -56,10 +56,10 @@ services:
         class: App\Admin\OrderAdmin
         arguments: [~, App\Entity\Order, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Orders }
+            - { name: sonata.admin, manager_type: orm, label: Заказы }
 
     admin.order_item:
         class: App\Admin\OrderItemAdmin
-        arguments: [~, App\Entity\OrderAdmin, ~]
+        arguments: [~, App\Entity\OrderItem, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, show_in_dashboard: false }

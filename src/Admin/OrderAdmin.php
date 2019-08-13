@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\Form\Type\CollectionType;
 
 class OrderAdmin extends AbstractAdmin
 {
@@ -16,10 +17,13 @@ class OrderAdmin extends AbstractAdmin
     {
         $list
             ->addIdentifier('id')
-            ->addIdentifier('id')
-            ->addIdentifier('id')
-            ->addIdentifier('id')
-            ->addIdentifier('id')
+            ->addIdentifier('orderedAt')
+            ->addIdentifier('firstName')
+            ->addIdentifier('lastName')
+            ->addIdentifier('email')
+            ->addIdentifier('amount', null, [
+                'template' => 'admin/order/list_amount.html.twig',
+            ])
         ;
     }
 
@@ -27,11 +31,14 @@ class OrderAdmin extends AbstractAdmin
     {
         $filter
             ->add('id')
-            ->add('id')
-            ->add('id')
-            ->add('id')
-            ->add('id')
+            ->add('orderedAt')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('email')
+            ->add('amount')
         ;
+
+        //$filter->get('amount')->addModelTransformer(new MoneyTransformer());
     }
 
     protected function configureFormFields(FormMapper $form)
@@ -45,6 +52,7 @@ class OrderAdmin extends AbstractAdmin
             ->add('amount', null, [
                 'attr' => [
                     'readonly' => true,
+                    'class' => 'js-amount',
                 ]
             ])
             ->add(
@@ -54,10 +62,9 @@ class OrderAdmin extends AbstractAdmin
                     'by_reference' => false
                 ],
                 [
-                    'edit' => 'inline'
-
+                    'edit' => 'inline',
+                    'inline' => 'table',
                 ]
-
             )
         ;
 
@@ -66,9 +73,7 @@ class OrderAdmin extends AbstractAdmin
 
     public function  createQuery($context = 'list')
     {
-        /**
-         * @var QueryBuilder $query
-         */
+         /** @var QueryBuilder $query */
         $query = parent::createQuery($context);
         list($rootAlias) = $query->getRootAliases();
 
