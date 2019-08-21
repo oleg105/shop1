@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category/{id}", name="category_id")
+     * @Route("/category/{id}", name="category_show")
      */
     public function show($id, CategoryRepository $categoryRepository)
     {
