@@ -19,14 +19,21 @@ class AttributeValueAdmin extends AbstractAdmin
         $choices = array_combine($attributeValues, $attributeValues);
 
         $form
-            ->add('attribute')
+            ->add('attribute', null, [
+                'attr' => [
+                    'class' => 'js-product-attribute',
+                ]
+            ])
             ->add('value', ChoiceType::class, [
                 'choices' => $choices,
                 'choice_attr' => function ($choice, $key, $value) use ($attributeValuesWithAttributes) {
                     return [
                         'data-attribute-id' => $attributeValuesWithAttributes[$value],
                     ];
-                }
+                },
+                'attr' => [
+                    'class' => 'js-product-attribute-value',
+                ]
 
             ])
         ;

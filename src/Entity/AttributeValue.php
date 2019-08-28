@@ -67,7 +67,7 @@ class AttributeValue
 
     public function setValue(?string $value): self
     {
-        $this->value = $value;
+        $this->value = $value ?? '';
 
         return $this;
     }
