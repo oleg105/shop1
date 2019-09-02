@@ -59,7 +59,7 @@ class ProductAdmin extends AbstractAdmin
                     'inline' => 'table',
                 ]
             )
-            >add(
+            ->add(
             'attributeValues',
             CollectionType::class,
             [
