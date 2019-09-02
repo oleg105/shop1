@@ -56,7 +56,8 @@ class Product
     private $orderItems;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AttributeValue", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\AttributeValue", mappedBy="product",
+     *     orphanRemoval=true, cascade={"persist"})
      */
     private $attributeValues;
 

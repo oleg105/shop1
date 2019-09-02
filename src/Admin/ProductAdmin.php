@@ -40,8 +40,12 @@ class ProductAdmin extends AbstractAdmin
     {
         $form
             ->add('name')
+            ->add('category', null, [
+                'attr' => [
+                    'class' => 'js-product-category',
+                ]
+            ])
             ->add('price')
-            ->add('category')
             ->add('description')
             ->add('isTop')
             ->add(
