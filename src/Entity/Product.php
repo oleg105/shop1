@@ -61,6 +61,11 @@ class Product
      */
     private $attributeValues;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $comfyId;
+
     public function  __construct()
     {
         $this->isTop = false;
@@ -228,6 +233,18 @@ class Product
                 $attributeValue->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getComfyId(): ?int
+    {
+        return $this->comfyId;
+    }
+
+    public function setComfyId(?int $comfyId): self
+    {
+        $this->comfyId = $comfyId;
 
         return $this;
     }

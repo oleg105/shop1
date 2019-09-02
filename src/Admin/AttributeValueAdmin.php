@@ -61,7 +61,7 @@ class AttributeValueAdmin extends AbstractAdmin
         $em = $modelManager->getEntityManager(Attribute::class);
 
         /** @var AttributeRepository $repo */
-        $repo = $em->getRepositiry(Attribute::class);
+        $repo = $em->getRepository(Attribute::class);
         $attributes = $repo->findAll();
         $values = [];
 

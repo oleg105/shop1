@@ -70,7 +70,7 @@ window.addEventListener('load', () => {
         valueSelect.innerHTML = ''; // очищаем список опций селекта
 
         attributeValues.forEach((item) => { // для каждого из возможных значений атрибутов
-            if (item.attributeId === attributeId) { // если айди атриьута у значения совпадает с выбранным
+            if (item.attributeId === attributeId) { // если айди атрибута у значения совпадает с выбранным
                 let option = document.createElement('option'); // создаем новый option
                 option.value = item.value;
                 option.innerHTML = item.label;
