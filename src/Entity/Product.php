@@ -40,11 +40,6 @@ class Product
     private $isTop;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
-     */
-    private $category;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProductImage", mappedBy="product",
      *      orphanRemoval=true, cascade={"persist"})
      */
@@ -66,12 +61,18 @@ class Product
      */
     private $comfyId;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", inversedBy="products")
+     */
+    private $categories;
+
     public function  __construct()
     {
         $this->isTop = false;
         $this->images = new ArrayCollection();
         $this->orderItems = new ArrayCollection();
         $this->attributeValues = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function __toString()
@@ -128,18 +129,6 @@ class Product
     public function setIsTop(bool $isTop): self
     {
         $this->isTop = $isTop;
-
-        return $this;
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
 
         return $this;
     }
@@ -245,6 +234,32 @@ class Product
     public function setComfyId(?int $comfyId): self
     {
         $this->comfyId = $comfyId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+        }
 
         return $this;
     }
