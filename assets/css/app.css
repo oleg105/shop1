@@ -6,3 +6,8 @@ input.cart-item-count {
     width: 4em;
     text-align: right;
 }
+
+.card-deck .card {
+    min-width: 20%;
+    max-width: 30%;
+}

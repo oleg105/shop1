@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Attribute;
+use App\Entity\AttributeValue;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\ProductImage;
@@ -146,14 +147,14 @@ class LoadProductsCommand extends Command
         /** @var DomQueryNodes $node */
         foreach ($attributeNodes as $node) {
             $title = $this->cleanupString("\n", $node->find('dt.title')->text());
-            $value = $this->cleanupString($node->find('dd.value . value__item')->text());
+            $value = $this->cleanupString($node->find('dd.value .value__item')->text());
 
             $attribute = $attributes[$title] ?? null;
 
             if (!$attribute) {
                 $attribute = new Attribute();
-                $attribute = setName($title);
-                $attribute = setCategory($product->getCategories()->first());
+                $attribute-> setName($title);
+                $attribute-> setCategory($product->getCategories()->first());
                 $this->entityManager->persist($attribute);
             }
 
@@ -206,9 +207,9 @@ class LoadProductsCommand extends Command
     private function cleanupString(string $string)
     {
         $string = explode("\n", $string);
-        list($string) = array_values(array_filter(array_map('trim', $string)));
+        $string = array_values(array_filter(array_map('trim', $string)));
 
-        return $string;
+        return $string[0] ?? '';
     }
 
 

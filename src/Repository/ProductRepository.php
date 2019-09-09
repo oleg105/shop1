@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Category;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -18,6 +19,43 @@ class ProductRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Product::class);
     }
+
+    /**
+     * @param Category $category
+     * @param array $filter
+     *
+     * @return Product[]
+     */
+    public function findByFilter(Category $category, array $filter)
+    {
+        $queryBuilder = $this->createQueryBuilder('p');
+        $queryBuilder
+            ->join('p.categories', 'c')
+            ->andWhere('c.id = :category')
+            ->setParameter('category', $category);
+
+        foreach ($filter as $key => $values) {
+            $attributeId = substr($key, 4);
+
+            $queryBuilder
+                ->join('p.attributeValues' , $key)
+                ->andWhere('IDENTITY('. $key . '.attribute) = :' . $key)
+                ->setParameter($key, $attributeId)
+                ->andWhere($queryBuilder->expr()->in($key . '.value' , $values));
+        }
+
+        return $queryBuilder->getQuery()->execute();
+    }
+
+
+
+
+
+
+
+
+
+
 
     // /**
     //  * @return Product[] Returns an array of Product objects
