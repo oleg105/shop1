@@ -22,7 +22,7 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * @param Category $category
-     * @param array $filter
+     * @param array $filter ['attr1913' => ['1.1'], 'attr23' => ['5']]
      *
      * @return Product[]
      */
@@ -38,14 +38,15 @@ class ProductRepository extends ServiceEntityRepository
             $attributeId = substr($key, 4);
 
             $queryBuilder
-                ->join('p.attributeValues' , $key)
-                ->andWhere('IDENTITY('. $key . '.attribute) = :' . $key)
+                ->join('p.attributeValues', $key)
+                ->andWhere('IDENTITY(' . $key . '.attribute) = :' . $key)
                 ->setParameter($key, $attributeId)
-                ->andWhere($queryBuilder->expr()->in($key . '.value' , $values));
+                ->andWhere($queryBuilder->expr()->in($key . '.value', $values));
         }
 
         return $queryBuilder->getQuery()->execute();
     }
+}
 
 
 
@@ -85,4 +86,4 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-}
+

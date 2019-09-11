@@ -1,3 +1,5 @@
 'use strict';
 
-// $('.filter fieldset')
+$('.filter fieldset').on('click', function() {
+    $(this).addClass('expanded');
+});
